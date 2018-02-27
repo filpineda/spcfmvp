@@ -30,7 +30,7 @@ class StudentRequest extends FormRequest
             // 'name' => 'required|min:5|max:255'
             'student_number' => [
                 'required',
-                Rule::unique('students', 'name')->ignore($this->route()->student)
+                Rule::unique('students', 'student_number')->ignore($this->route()->student)
             ],
             'first_name' => 'required|min:5|max:30',
             'middle_name' => 'required|min:5|max:30',

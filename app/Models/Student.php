@@ -36,7 +36,11 @@ class Student extends Model
     ];
     // protected $hidden = [];
     // protected $dates = [];
-    protected $appends = ['admission_year_only'];
+    protected $appends = [
+        'admission_year_only',
+        'full_address',
+        'date_of_birth_readable',
+    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -72,9 +76,19 @@ class Student extends Model
         return Carbon::createFromFormat('Y-m-d', $value);
     }
 
+    public function getDateOfBirthReadableAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d', $this->attributes['date_of_birth'])->format('F d, Y');
+    }
+
     public function getAdmissionYearOnlyAttribute()
     {
         return Carbon::create($this->attributes['admission_year'], 1, 1, 0, 0, 0)->format('Y');
+    }
+
+    public function getFullAddressAttribute()
+    {
+        return ($this->attributes['address1'] . ", " ?: "") . ($this->attributes['address2'] . ", " ?: "") . ($this->attributes['municipality'] . ", " ?: "") . ($this->attributes['province'] ?: "");
     }
 
     /*
