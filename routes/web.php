@@ -19,6 +19,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth'], 'namespace' 
 
    CRUD::resource('student', 'StudentCrudController');
 
+   CRUD::resource('academic_year', 'AcademicYearCrudController');
+
    CRUD::resource('course', 'CourseCrudController');
 
    CRUD::resource('subject', 'SubjectCrudController');

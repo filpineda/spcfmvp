@@ -23,10 +23,19 @@ class Subject extends Model
     protected $fillable = [
         'name',
         'code',
+        'description',
         'slug',
+        'academic_year_id',
+        'semester_applicable',
+        'course_id',
+        'units',
+        'price_per_unit',
     ];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $appends = [
+        'full_units_total_amount',
+    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -39,9 +48,14 @@ class Subject extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function courses()
+    public function course()
     {
-        return $this->belongsToMany('App\Models\Course', 'course_subject');
+        return $this->belongsTo('App\Models\Course');
+    }
+
+    public function academic_year()
+    {
+        return $this->belongsTo('App\Models\AcademicYear');
     }
 
     /*
@@ -55,6 +69,11 @@ class Subject extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+
+    public function getFullUnitsTotalAmountAttribute()
+    {
+        return (($this->attributes['units']) * ($this->attributes['price_per_unit']));
+    }
 
     /*
     |--------------------------------------------------------------------------

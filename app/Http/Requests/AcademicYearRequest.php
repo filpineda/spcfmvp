@@ -4,9 +4,8 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class FeeRequest extends FormRequest
+class AcademicYearRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,13 +28,8 @@ class FeeRequest extends FormRequest
         return [
             'name' => [
                 'required',
-                'min:5',
-                'max:255',
-                Rule::unique('fees', 'name')->ignore($this->route()->fee)
-            ],
-            'amount' => [
-                'required',
-                'numeric'
+                'numeric',
+                'regex:/^([2-9][0-9]{3})?$/'
             ],
         ];
     }

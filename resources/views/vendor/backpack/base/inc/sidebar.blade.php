@@ -19,6 +19,7 @@
           {{-- <li class="header">Other menus</li> --}}
           <li><a href="{{ backpack_url('elfinder') }}"><i class="fa fa-files-o"></i> <span>File manager</span></a></li>
           <li><a href="{{ backpack_url('student') }}"><i class="fa fa-users"></i> <span>Student Info Mgmt</span></a></li>
+          <li><a href="{{ backpack_url('academic_year') }}"><i class="fa fa-calendar"></i> <span>Academic Year Mgmt</span></a></li>
           <li><a href="{{ backpack_url('course') }}"><i class="fa fa-clipboard"></i> <span>Courses Mgmt</span></a></li>
           <li><a href="{{ backpack_url('subject') }}"><i class="fa fa-book"></i> <span>Subjects Mgmt</span></a></li>
           <li><a href="{{ backpack_url('fee') }}"><i class="fa fa-dollar"></i> <span>Fees Mgmt</span></a></li>

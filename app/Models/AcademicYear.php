@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Traits\CustomWordFormattersTrait;
-use Backpack\CRUD\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Backpack\CRUD\CrudTrait;
 
-class Course extends Model
+class AcademicYear extends Model
 {
-    use CrudTrait, CustomWordFormattersTrait;
+    use CrudTrait;
 
     /*
     |--------------------------------------------------------------------------
@@ -16,14 +15,12 @@ class Course extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'courses';
+    protected $table = 'academic_years';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
     protected $fillable = [
         'name',
-        'code',
-        'slug',
     ];
     // protected $hidden = [];
     // protected $dates = [];
@@ -39,10 +36,6 @@ class Course extends Model
     | RELATIONS
     |--------------------------------------------------------------------------
     */
-    public function subjects()
-    {
-        return $this->hasMany('App\Models\Subject');
-    }
 
     /*
     |--------------------------------------------------------------------------
@@ -61,14 +54,4 @@ class Course extends Model
     | MUTATORS
     |--------------------------------------------------------------------------
     */
-
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $this->CapitalizeNonPrepositionWords($value);
-    }
-
-    public function setCodeAttribute($value)
-    {
-        $this->attributes['code'] = strtoupper($value);
-    }
 }

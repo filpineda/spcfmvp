@@ -17,7 +17,13 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('code')->unique();
+            $table->string('description');
             $table->string('slug')->unique();
+            $table->integer('academic_year_id')->unsigned();
+            $table->enum('semester_applicable', ['1st SEMESTER', '2nd SEMESTER']);
+            $table->integer('course_id')->unsigned();
+            $table->decimal('units', 3, 2);
+            $table->decimal('price_per_unit', 19, 4);
             $table->timestamps();
         });
     }

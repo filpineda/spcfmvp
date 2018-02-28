@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 
 // VALIDATION: change the requests to match your own file names if you need form validation
-use App\Http\Requests\SubjectRequest as StoreRequest;
-use App\Http\Requests\SubjectRequest as UpdateRequest;
+use App\Http\Requests\AcademicYearRequest as StoreRequest;
+use App\Http\Requests\AcademicYearRequest as UpdateRequest;
 
-class SubjectCrudController extends CrudController
+class AcademicYearCrudController extends CrudController
 {
     public function setup()
     {
@@ -18,9 +18,9 @@ class SubjectCrudController extends CrudController
         | BASIC CRUD INFORMATION
         |--------------------------------------------------------------------------
         */
-        $this->crud->setModel('App\Models\Subject');
-        $this->crud->setRoute(config('backpack.base.route_prefix') . '/subject');
-        $this->crud->setEntityNameStrings('subject', 'subjects');
+        $this->crud->setModel('App\Models\AcademicYear');
+        $this->crud->setRoute(config('backpack.base.route_prefix') . '/academic_year');
+        $this->crud->setEntityNameStrings('academic year', 'academic years');
 
         /*
         |--------------------------------------------------------------------------
@@ -28,118 +28,7 @@ class SubjectCrudController extends CrudController
         |--------------------------------------------------------------------------
         */
 
-        // $this->crud->setFromDb();
-        $this->crud->setColumns([
-            [
-                'name' => 'name',
-                'label' => 'Subject Name',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'description',
-                'label' => 'Subject Description',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'code',
-                'label' => 'Subject Code',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'academic_year_id',
-                'label' => 'Academic Year',
-                'type' => 'select',
-                'entity' => 'academic_year',
-                'attribute' => 'name',
-                'model' => 'App\Models\AcademicYear',
-            ],
-            [
-                'name' => 'semester_applicable',
-                'label' => 'Semester',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'course_id',
-                'label' => 'Course',
-                'type' => 'select',
-                'entity' => 'course',
-                'attribute' => 'code',
-                'model' => 'App\Models\Course',
-            ],
-            [
-                'name' => 'units',
-                'label' => 'Units',
-                'type' => 'number',
-                'decimals' => '2',
-            ],
-            [
-                'name' => 'price_per_unit',
-                'label' => 'Price / Unit',
-                'type' => 'number',
-                'prefix' => 'P ',
-                'decimals' => '2',
-            ],
-            [
-                'name' => 'full_units_total_amount',
-                'label' => 'Full Units Total Amount',
-                'type' => 'number',
-                'prefix' => 'P ',
-                'decimals' => '2',
-            ],
-        ]);
-
-        $this->crud->addFields([
-            [
-                'name' => 'name',
-                'label' => 'Subject Name',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'code',
-                'label' => 'Subject Code',
-                'type' => 'text',
-            ],
-            [
-                'name' => 'description',
-                'label' => 'Subject Description',
-                'type' => 'textarea',
-            ],
-            [
-                'name' => 'academic_year_id',
-                'label' => 'Academic Year',
-                'type' => 'select2',
-                'entity' => 'academic_years',
-                'attribute' => 'name',
-                'model' => 'App\Models\AcademicYear',
-            ],
-            [
-                'name' => 'semester_applicable',
-                'label' => 'Semester',
-                'type' => 'enum',
-            ],
-            [
-                'name' => 'course_id',
-                'label' => 'Courses',
-                'type' => 'select2',
-                'entity' => 'courses',
-                'attribute' => 'name',
-                'model' => 'App\Models\Course',
-            ],
-            [
-                'name' => 'units',
-                'label' => 'Number of Units',
-                'type' => 'number',
-                'attributes' => ["step" => "any"], // allow decimals
-                'suffix' => 'units'
-            ],
-            [
-                'name' => 'price_per_unit',
-                'label' => 'Price / Unit',
-                'type' => 'number',
-                'attributes' => ["step" => "any"], // allow decimals
-                'prefix' => "P",
-            ],
-        ]);
+        $this->crud->setFromDb();
 
         // ------ CRUD FIELDS
         // $this->crud->addField($options, 'update/create/both');
@@ -213,7 +102,6 @@ class SubjectCrudController extends CrudController
     public function store(StoreRequest $request)
     {
         // your additional operations before save here
-        $request['slug'] = str_slug($request->input('name'));
         $redirect_location = parent::storeCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry
@@ -223,7 +111,6 @@ class SubjectCrudController extends CrudController
     public function update(UpdateRequest $request)
     {
         // your additional operations before save here
-        $request['slug'] = str_slug($request->input('name'));
         $redirect_location = parent::updateCrud($request);
         // your additional operations after save here
         // use $this->data['entry'] or $this->crud->entry

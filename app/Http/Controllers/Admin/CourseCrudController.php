@@ -40,11 +40,6 @@ class CourseCrudController extends CrudController
                 'label' => 'Course Code',
                 'type' => 'text',
             ],
-            [
-                'name' => 'slug',
-                'label' => 'Slug',
-                'type' => 'text',
-            ],
         ]);
 
         $this->crud->addFields([
@@ -57,16 +52,7 @@ class CourseCrudController extends CrudController
                 'name' => 'code',
                 'label' => 'Course Code',
                 'type' => 'text',
-            ],
-            [
-                'name' => 'subjects',
-                'label' => 'Subjects',
-                'type' => 'select2_multiple',
-                'entity' => 'subjects',
-                'attribute' => 'name',
-                'model' => 'App\Models\Subject',
-                'pivot' => true
-            ],
+            ]
         ]);
 
         // ------ CRUD FIELDS

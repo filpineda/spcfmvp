@@ -31,13 +31,13 @@ class CourseRequest extends FormRequest
                 'required',
                 'min:5',
                 'max:255',
-                Rule::unique('courses', 'name')->ignore($this->route()->course)
+                Rule::unique('courses', 'name')->ignore($this->route()->course),
             ],
             'code' => [
                 'required',
-                'min:5',
+                'min:3',
                 'max:15',
-                Rule::unique('courses', 'code')->ignore($this->route()->course)
+                Rule::unique('courses', 'code')->ignore($this->route()->course),
             ],
         ];
     }

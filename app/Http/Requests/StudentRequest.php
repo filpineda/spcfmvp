@@ -30,18 +30,54 @@ class StudentRequest extends FormRequest
             // 'name' => 'required|min:5|max:255'
             'student_number' => [
                 'required',
-                Rule::unique('students', 'student_number')->ignore($this->route()->student)
+                Rule::unique('students', 'student_number')->ignore($this->route()->student),
             ],
-            'first_name' => 'required|min:5|max:30',
-            'middle_name' => 'required|min:5|max:30',
-            'last_name' => 'required|min:5|max:30',
-            'admission_year' => 'required|date',
-            'religion' => 'required',
-            'address1' => 'required|min:5|max:255',
-            'address2' => 'required|min:5|max:255',
-            'municipality' => 'required|min:5|max:255',
-            'province' => 'required|min:5|max:255',
-            'date_of_birth' => 'required|date',
+            'first_name' => [
+                'required',
+                'min:5',
+                'max:30',
+            ],
+            'middle_name' => [
+                'required',
+                'min:5',
+                'max:30',
+            ],
+            'last_name' => [
+                'required',
+                'min:5',
+                'max:30',
+            ],
+            'admission_year' => [
+                'required',
+                'date',
+            ],
+            'religion' => [
+                'required'
+            ],
+            'address1' => [
+                'required',
+                'min:5',
+                'max:255',
+            ],
+            'address2' => [
+                'required',
+                'min:5',
+                'max:255',
+            ],
+            'municipality' => [
+                'required',
+                'min:5',
+                'max:255',
+            ],
+            'province' => [
+                'required',
+                'min:5',
+                'max:255',
+            ],
+            'date_of_birth' => [
+                'required',
+                'date',
+            ],
         ];
     }
 
