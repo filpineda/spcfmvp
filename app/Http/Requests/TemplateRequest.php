@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TemplateRequest extends FormRequest
 {
@@ -26,7 +27,28 @@ class TemplateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'name' => 'required|min:5|max:255'
+            'name' => [
+                'required',
+                'min:5',
+                'max:255',
+                Rule::unique('templates', 'name')->ignore($this->route()->template),
+            ],
+            'course_id' => [
+                'required',
+                Rule::exists('courses', 'id'),
+            ],
+            'academic_year_id' => [
+                'required',
+                Rule::exists('academic_years', 'id'),
+            ],
+            'semester_applicable' => [
+                'required',
+                Rule::in(['1st SEMESTER', '2nd SEMESTER']),
+            ],
+            'due_at' => [
+                'required',
+                'date',
+            ],
         ];
     }
 

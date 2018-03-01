@@ -31,6 +31,9 @@ class Template extends Model
     // protected $dates = [];
     protected $appends = [
         'due_at_readable',
+        'fees_subtotal',
+        'subjects_subtotal',
+        'total_amount',
     ];
 
     /*
@@ -80,6 +83,37 @@ class Template extends Model
     public function getDueAtReadableAttribute()
     {
         return Carbon::createFromFormat('Y-m-d', $this->attributes['due_at'])->format('F d, Y');
+    }
+
+    public function getFeesSubtotalAttribute()
+    {
+        $subtotal = 0;
+
+        if($this->fees) {
+            $this->fees->each(function($fee) use (&$subtotal) {
+                $subtotal += (float) $fee->amount;
+            });
+        }
+
+        return $subtotal;
+    }
+
+    public function getSubjectsSubtotalAttribute()
+    {
+        $subtotal = 0;
+
+        if($this->subjects) {
+            $this->subjects->each(function($subject) use (&$subtotal) {
+                $subtotal += (float) $subject->full_units_total_amount;
+            });
+        }
+
+        return $subtotal;
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        return $this->fees_subtotal + $this->subjects_subtotal;
     }
 
     /*

@@ -2,8 +2,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			@if($entry->fees)
-				<strong>Fees:</strong><br>
-				<table class="table table-striped table-bordered">
+				<strong>Fees:</strong><br><br>
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -18,12 +18,18 @@
 							</tr>
 						@endforeach
 					</tbody>
+					<tfoot>
+						<tr>
+							<td><strong> Fees Subtotal: </strong></td>
+							<td> P {{ customNumericFormat($entry->fees_subtotal) }} </td>
+						</tr>
+					</tfoot>
 				</table>
 			@endif
 
 			@if($entry->subjects)
-				<strong>Subjects:</strong><br>
-				<table class="table table-striped table-bordered">
+				<strong>Subjects:</strong><br><br>
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -42,8 +48,23 @@
 							</tr>
 						@endforeach
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3"><strong> Subjects Subtotal: </strong></td>
+							<td> P {{ customNumericFormat($entry->subjects_subtotal) }} </td>
+						</tr>
+					</tfoot>
 				</table>
 			@endif
+
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td><strong> TOTAL AMOUNT: </strong></td>
+						<td> P {{ customNumericFormat($entry->total_amount) }} </td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 	</div>
 </div>
