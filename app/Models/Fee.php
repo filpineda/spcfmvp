@@ -28,6 +28,9 @@ class Fee extends Model
     ];
     // protected $hidden = [];
     // protected $dates = [];
+    protected $appends = [
+        'is_compulsory_readable'
+    ];
 
     /*
     |--------------------------------------------------------------------------
@@ -52,6 +55,11 @@ class Fee extends Model
     | ACCESORS
     |--------------------------------------------------------------------------
     */
+
+    public function getIsCompulsoryReadableAttribute()
+    {
+        return $this->attributes['is_compulsory'] ? "YES" : "NO";
+    }
 
     /*
     |--------------------------------------------------------------------------

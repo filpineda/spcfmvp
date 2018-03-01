@@ -7,6 +7,8 @@
 					<thead>
 						<tr>
 							<th>Name</th>
+							<th>Type</th>
+							<th>Compulsory</th>
 							<th>Amount</th>
 						</tr>
 					</thead>
@@ -14,13 +16,15 @@
 						@foreach($entry->fees as $item)
 							<tr>
 								<td> {{ $item->name }} </td>
+								<td> {{ $item->type }} </td>
+								<td> {{ $item->is_compulsory_readable }} </td>
 								<td> P {{ customNumericFormat($item->amount) }} </td>
 							</tr>
 						@endforeach
 					</tbody>
 					<tfoot>
 						<tr>
-							<td><strong> Fees Subtotal: </strong></td>
+							<td colspan="3"><strong> Fees Subtotal: </strong></td>
 							<td> P {{ customNumericFormat($entry->fees_subtotal) }} </td>
 						</tr>
 					</tfoot>
