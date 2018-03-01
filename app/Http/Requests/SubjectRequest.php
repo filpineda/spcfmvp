@@ -30,13 +30,13 @@ class SubjectRequest extends FormRequest
             'name' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
                 Rule::unique('subjects', 'name')->ignore($this->route()->subject),
             ],
             'description' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
             ],
             'code' => [
                 'required',

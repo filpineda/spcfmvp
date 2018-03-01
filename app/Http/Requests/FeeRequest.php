@@ -30,7 +30,7 @@ class FeeRequest extends FormRequest
             'name' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
                 Rule::unique('fees', 'name')->ignore($this->route()->fee)
             ],
             'amount' => [

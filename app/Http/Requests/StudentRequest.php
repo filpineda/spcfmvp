@@ -57,22 +57,22 @@ class StudentRequest extends FormRequest
             'address1' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
             ],
             'address2' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
             ],
             'municipality' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
             ],
             'province' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
             ],
             'date_of_birth' => [
                 'required',

@@ -30,7 +30,7 @@ class TemplateRequest extends FormRequest
             'name' => [
                 'required',
                 'min:5',
-                'max:255',
+                'max:150',
                 Rule::unique('templates', 'name')->ignore($this->route()->template),
             ],
             'course_id' => [
