@@ -27,4 +27,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth'], 'namespace' 
 
    CRUD::resource('fee', 'FeeCrudController');
 
+   CRUD::resource('template', 'TemplateCrudController');
+
 });

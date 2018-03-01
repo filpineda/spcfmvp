@@ -23,6 +23,7 @@
           <li><a href="{{ backpack_url('course') }}"><i class="fa fa-clipboard"></i> <span>Courses Mgmt</span></a></li>
           <li><a href="{{ backpack_url('subject') }}"><i class="fa fa-book"></i> <span>Subjects Mgmt</span></a></li>
           <li><a href="{{ backpack_url('fee') }}"><i class="fa fa-dollar"></i> <span>Fees Mgmt</span></a></li>
+          <li><a href="{{ backpack_url('template') }}"><i class="fa fa-table"></i> <span>Fees Template Mgmt</span></a></li>
         </ul>
       </section>
       <!-- /.sidebar -->
